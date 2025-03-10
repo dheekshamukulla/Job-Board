@@ -15,17 +15,23 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.1",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@octokit/rest": "^21.0.2",
+    "@react-oauth/google": "^0.12.1",
     "axios": "^1.7.7",
-    "dotenv": "^16.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
     "js-yaml": "^4.1.0",
     "lucide-react": "^0.456.0",
+    "pg": "^8.13.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^7.2.0",
     "recoil": "^0.7.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
+    "@tailwindcss/forms": "^0.5.10",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
@@ -37,6 +43,6 @@
     "globals": "^15.11.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
-    "vite": "^5.4.9"
+    "vite": "^6.2.0"
   }
 }

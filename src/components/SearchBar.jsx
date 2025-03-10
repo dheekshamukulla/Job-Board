@@ -9,7 +9,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
     <div className="search-bar" style={{ marginBottom: "20px", textAlign: "center" }}>
       <input
         type="text"
-        placeholder="Search repositories..."
+        placeholder="Search job postings..."
         value={searchTerm}
         onChange={handleSearch}
         style={{
