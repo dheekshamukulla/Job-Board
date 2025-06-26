@@ -86,8 +86,15 @@ const Login = () => {
                             >
                                 Don't have an account? Register
                             </button>
-                        </div>
-                        <div className="text-center">
+                            <br />
+                            <button
+                                type="button"
+                                onClick={() => navigate('/job-board.html')}
+                                className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
+                            >
+                                Return to Job Board
+                            </button>
+                            <br />
                             <button
                                 type="button"
                                 onClick={() => navigate('/admin/login')}

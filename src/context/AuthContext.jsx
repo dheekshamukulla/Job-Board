@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
         console.log('Checking auth...');
         try {
             console.log('Making request to /api/auth/me');
-            const response = await fetch('http://localhost:5000/api/auth/me', {
+            const response = await fetch('http://localhost:5050/api/auth/me', {
                 credentials: 'include',
                 headers: {
                     'Accept': 'application/json',
@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:5000/api/auth/login', {
+            const response = await fetch('http://localhost:5050/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ export const AuthProvider = ({ children }) => {
             setIsRegistering(true);
             setLoading(true);
             console.log('Starting registration...', { name, email });
-            const response = await fetch('http://localhost:5000/api/auth/register', {
+            const response = await fetch('http://localhost:5050/api/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ export const AuthProvider = ({ children }) => {
     const googleSignIn = async (accessToken) => {
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:5000/api/auth/google', {
+            const response = await fetch('http://localhost:5050/api/auth/google', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ export const AuthProvider = ({ children }) => {
     const logout = async () => {
         try {
             setLoading(true);
-            await fetch('http://localhost:5000/api/auth/logout', {
+            await fetch('http://localhost:5050/api/auth/logout', {
                 method: 'POST',
                 credentials: 'include'
             });

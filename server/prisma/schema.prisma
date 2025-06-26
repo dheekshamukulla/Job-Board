@@ -9,15 +9,17 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
-enum AuthProvider {
-  EMAIL
-  GOOGLE
-  APPLE
-}
+
+
+// enum AuthProvider {
+//   EMAIL
+//   GOOGLE
+//   APPLE
+// }
 
 model User {
   id           Int          @id @default(autoincrement())
@@ -25,7 +27,7 @@ model User {
   password     String?      // Optional because OAuth users won't have a password
   name         String
   isAdmin      Boolean      @default(false)
-  authProvider AuthProvider @default(EMAIL)
+  authProvider String       @default("EMAIL")
   avatar       String?      // Profile picture URL
   jobs         Job[]        @relation("UserJobs")
   applications JobApplication[]
@@ -37,7 +39,7 @@ model Job {
   id            Int             @id @default(autoincrement())
   name          String         // Job title
   company       String
-  description   String         @db.Text
+  description   String         //@db.Text
   location      String
   type          String         // TECH, EDUCATION, TRADE, MARKETING
   salary        String
@@ -61,7 +63,7 @@ model JobApplication {
   email       String
   phone       String
   resumeUrl   String?
-  comments    String?  @db.Text
+  comments    String?  //@db.Text
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

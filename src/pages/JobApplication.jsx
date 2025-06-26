@@ -49,7 +49,7 @@ const JobApplication = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/api/jobs/${id}/apply`, {
+            const response = await fetch(`http://localhost:5050/api/jobs/${id}/apply`, {
                 method: 'POST',
                 credentials: 'include',
                 body: submitData // Remove headers as FormData sets the correct Content-Type

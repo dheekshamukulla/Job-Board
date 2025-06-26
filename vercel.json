@@ -1,0 +1,16 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "vite",
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/job-board.html"
+    }
+  ],
+  "env": {
+    "VITE_API_URL": "http://0.0.0.0:5050"
+  }
+} 

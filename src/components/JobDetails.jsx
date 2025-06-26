@@ -38,7 +38,7 @@ const JobDetails = ({ job, onClose, onDelete }) => {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch(`http://localhost:5000/api/jobs/${job.id}/applications`, {
+            const response = await fetch(`http://localhost:5050/api/jobs/${job.id}/applications`, {
                 credentials: 'include',
                 headers: {
                     'Accept': 'application/json'
@@ -94,7 +94,7 @@ const JobDetails = ({ job, onClose, onDelete }) => {
     };
 
     const downloadResume = (resumeUrl) => {
-        window.open(`http://localhost:5000${resumeUrl}`, '_blank');
+        window.open(`http://localhost:5050${resumeUrl}`, '_blank');
     };
 
     const handleEdit = () => {
@@ -103,7 +103,7 @@ const JobDetails = ({ job, onClose, onDelete }) => {
 
     const handleSave = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/jobs/${job.id}`, {
+            const response = await fetch(`http://localhost:5050/api/jobs/${job.id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -190,32 +190,49 @@ const JobDetails = ({ job, onClose, onDelete }) => {
         return errors;
     };
 
-    const formatSalary = (value) => {
-        // Remove all characters except numbers
-        const numbers = value.replace(/[^\d]/g, '');
+    // const formatSalary = (value) => {
+    //     // Remove all characters except numbers
+    //     const numbers = value.replace(/[^\d]/g, '');
         
+    //     // Split into two parts if there's a hyphen
+    //     const parts = value.split('-').map(part => part.trim());
+        
+    //     if (parts.length === 2) {
+    //         // Format each number with commas and dollar sign
+    //         const formatNumber = (num) => {
+    //             const numbers = num.replace(/[^\d]/g, '');
+    //             if (numbers) {
+    //                 return '$' + parseInt(numbers).toLocaleString('en-US');
+    //             }
+    //             return '';
+    //         };
+            
+    //         return `${formatNumber(parts[0])} - ${formatNumber(parts[1])}`;
+    //     }
+        
+    //     // // If no hyphen, just format the single number
+    //     // if (numbers) {
+    //     //     return '$' + parseInt(numbers).toLocaleString('en-US');
+    //     // }
+        
+    //     return value;
+    // };
+
+    const formatSalary = (value) => {
         // Split into two parts if there's a hyphen
         const parts = value.split('-').map(part => part.trim());
-        
+    
+        const formatNumber = (num) => {
+            const numbersOnly = num.replace(/[^\d]/g, '');
+            return numbersOnly ? '$' + parseInt(numbersOnly).toLocaleString('en-US') : '';
+        };
+    
         if (parts.length === 2) {
-            // Format each number with commas and dollar sign
-            const formatNumber = (num) => {
-                const numbers = num.replace(/[^\d]/g, '');
-                if (numbers) {
-                    return '$' + parseInt(numbers).toLocaleString('en-US');
-                }
-                return '';
-            };
-            
             return `${formatNumber(parts[0])} - ${formatNumber(parts[1])}`;
         }
-        
+    
         // If no hyphen, just format the single number
-        if (numbers) {
-            return '$' + parseInt(numbers).toLocaleString('en-US');
-        }
-        
-        return value;
+        return formatNumber(value);
     };
 
     const handleSalaryChange = (e) => {
@@ -406,7 +423,7 @@ const JobDetails = ({ job, onClose, onDelete }) => {
                                             {application.resumeUrl && (
                                                 <button
                                                     onClick={() => downloadResume(application.resumeUrl)}
-                                                    className="mt-2 text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                                                    className="mt-2 text-sm text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
                                                 >
                                                     Download Resume
                                                 </button>

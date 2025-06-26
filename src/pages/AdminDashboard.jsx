@@ -20,7 +20,7 @@ const AdminDashboard = () => {
 
     const fetchJobs = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/admin/jobs', {
+            const response = await fetch('http://localhost:5050/api/admin/jobs', {
                 credentials: 'include'
             });
             if (!response.ok) throw new Error('Failed to fetch jobs');
@@ -42,7 +42,7 @@ const AdminDashboard = () => {
     const handleApprove = async (jobId, e) => {
         e.stopPropagation();
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/jobs/${jobId}/approve`, {
+            const response = await fetch(`http://localhost:5050/api/admin/jobs/${jobId}/approve`, {
                 method: 'PATCH',
                 credentials: 'include'
             });
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
     const handleDelete = async (jobId, e) => {
         e.stopPropagation();
         try {
-            const response = await fetch(`http://localhost:5000/api/jobs/${jobId}`, {
+            const response = await fetch(`http://localhost:5050/api/jobs/${jobId}`, {
                 method: 'DELETE',
                 credentials: 'include'
             });

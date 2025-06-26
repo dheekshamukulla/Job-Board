@@ -28,7 +28,7 @@ const Body = ({ onShowAuth }) => {
         try {
             setIsLoading(true);
             const endpoint = user?.isAdmin ? '/api/admin/jobs' : '/api/jobs';
-            const response = await fetch(`http://localhost:5000${endpoint}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`, {
                 credentials: 'include'
             });
             const data = await response.json();
@@ -47,14 +47,14 @@ const Body = ({ onShowAuth }) => {
 
     const handleDeleteJob = async (jobId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/jobs/${jobId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/jobs/${jobId}`, {
                 method: 'DELETE',
                 credentials: 'include'
             });
 
             if (response.ok) {
                 setSelectedJob(null);
-                fetchJobs(); // Refresh the job list
+                fetchJobs();
             } else {
                 console.error('Failed to delete job');
             }
@@ -65,13 +65,13 @@ const Body = ({ onShowAuth }) => {
 
     const handleApproveJob = async (jobId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/jobs/${jobId}/approve`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/jobs/${jobId}/approve`, {
                 method: 'PATCH',
                 credentials: 'include'
             });
 
             if (response.ok) {
-                fetchJobs(); // Refresh the job list
+                fetchJobs();
             } else {
                 console.error('Failed to approve job');
             }
@@ -98,7 +98,7 @@ const Body = ({ onShowAuth }) => {
         setSearchTerm('');
         try {
             setIsLoading(true);
-            const response = await fetch(`http://localhost:5000/api/jobs/category/${category}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/jobs/category/${category}`, {
                 credentials: 'include'
             });
             const data = await response.json();
@@ -142,7 +142,7 @@ const Body = ({ onShowAuth }) => {
 
         try {
             setIsLoading(true);
-            const response = await fetch(`http://localhost:5000/api/search?query=${encodeURIComponent(value)}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/search?query=${encodeURIComponent(value)}`, {
                 credentials: 'include'
             });
             const data = await response.json();
@@ -176,13 +176,13 @@ const Body = ({ onShowAuth }) => {
     return (
         <div className="container mx-auto px-4 py-8">
             <div className="flex justify-between items-center mb-8">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Aurelia</h1>
+                <a href="index.html"><h1 className="text-3xl font-bold text-blue-900 dark:text-white">HireWire</h1></a>
                 <div className="flex items-center space-x-4">
                     <ThemeToggle />
                     {!user ? (
                         <button
                             onClick={() => navigate('/login')}
-                            className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 dark:bg-gray-600 dark:hover:bg-gray-500"
+                            className="bg-blue-900 text-white px-4 py-2 rounded hover:bg-gray-700 dark:bg-gray-600 dark:hover:bg-gray-500"
                         >
                             Login
                         </button>
@@ -190,13 +190,13 @@ const Body = ({ onShowAuth }) => {
                         <>
                             <button
                                 onClick={() => setSubState(true)}
-                                className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 dark:bg-gray-600 dark:hover:bg-gray-500"
+                                className="bg-blue-900 text-white px-4 py-2 rounded hover:bg-gray-700 dark:bg-gray-600 dark:hover:bg-gray-500"
                             >
                                 Post a Job
                             </button>
                             <button
                                 onClick={handleLogout}
-                                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800"
+                                className="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800"
                             >
                                 Sign Out
                             </button>
@@ -223,7 +223,7 @@ const Body = ({ onShowAuth }) => {
                         className={`text-sm font-medium px-4 py-2 rounded-full transition-all duration-300 ${
                             activeFilter === 'All' 
                             ? 'bg-gray-800 text-white dark:bg-gray-200 dark:text-black' 
-                            : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                            : 'bg-blue-100 text-blue-900 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
                         }`}
                     >
                         All Jobs
@@ -235,7 +235,7 @@ const Body = ({ onShowAuth }) => {
                             className={`text-sm font-medium px-4 py-2 rounded-full transition-all duration-300 ${
                                 activeFilter === category.id 
                                 ? 'bg-gray-800 text-white dark:bg-gray-200 dark:text-black' 
-                                : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                                : 'bg-blue-100 text-blue-900 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
                             }`}
                         >
                             {category.label}
@@ -248,7 +248,7 @@ const Body = ({ onShowAuth }) => {
                         className={`text-sm font-medium px-4 py-2 rounded-full transition-all duration-300 ${
                             activeFilter === 'My Postings' 
                             ? 'bg-gray-800 text-white dark:bg-gray-200 dark:text-black' 
-                            : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                            : 'bg-blue-100 text-blue-900 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
                         }`}
                     >
                         My Postings

@@ -55,33 +55,50 @@ const Submission = () => {
 		return errors;
 	};
 
-	const formatSalary = (value) => {
-		// Remove all characters except numbers
-		const numbers = value.replace(/[^\d]/g, '');
+	// const formatSalary = (value) => {
+	// 	// Remove all characters except numbers
+	// 	const numbers = value.replace(/[^\d]/g, '');
 		
-		// Split into two parts if there's a hyphen
-		const parts = value.split('-').map(part => part.trim());
+	// 	// Split into two parts if there's a hyphen
+	// 	const parts = value.split('-').map(part => part.trim());
 		
-		if (parts.length === 2) {
-			// Format each number with commas and dollar sign
-			const formatNumber = (num) => {
-				const numbers = num.replace(/[^\d]/g, '');
-				if (numbers) {
-					return '$' + parseInt(numbers).toLocaleString('en-US');
-				}
-				return '';
-			};
+	// 	if (parts.length === 2) {
+	// 		// Format each number with commas and dollar sign
+	// 		const formatNumber = (num) => {
+	// 			const numbers = num.replace(/[^\d]/g, '');
+	// 			if (numbers) {
+	// 				return '$' + parseInt(numbers).toLocaleString('en-US');
+	// 			}
+	// 			return '';
+	// 		};
 			
-			return `${formatNumber(parts[0])} - ${formatNumber(parts[1])}`;
-		}
+	// 		return `${formatNumber(parts[0])} - ${formatNumber(parts[1])}`;
+	// 	}
 		
-		// If no hyphen, just format the single number
-		if (numbers) {
-			return '$' + parseInt(numbers).toLocaleString('en-US');
-		}
+	// 	// If no hyphen, just format the single number
+	// 	if (numbers) {
+	// 		return '$' + parseInt(numbers).toLocaleString('en-US');
+	// 	}
 		
-		return value;
-	};
+	// 	return value;
+	// };
+
+	const formatSalary = (value) => {
+        // Split into two parts if there's a hyphen
+        const parts = value.split('-').map(part => part.trim());
+    
+        const formatNumber = (num) => {
+            const numbersOnly = num.replace(/[^\d]/g, '');
+            return numbersOnly ? '$' + parseInt(numbersOnly).toLocaleString('en-US') : '';
+        };
+    
+        if (parts.length === 2) {
+            return `${formatNumber(parts[0])} - ${formatNumber(parts[1])}`;
+        }
+    
+        // If no hyphen, just format the single number
+        return formatNumber(value);
+    };
 
 	const handleSalaryChange = (e) => {
 		const formatted = formatSalary(e.target.value);
@@ -112,7 +129,7 @@ const Submission = () => {
 		}
 
 		try {
-			const response = await fetch('http://localhost:5000/api/jobs', {
+			const response = await fetch('http://localhost:5050/api/jobs', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

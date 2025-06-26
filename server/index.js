@@ -9,6 +9,9 @@ import { OAuth2Client } from 'google-auth-library';
 import multer from 'multer';
 import path from 'path';
 import fetch from 'node-fetch';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // Initialize Prisma Client
 const prisma = new PrismaClient();
@@ -25,6 +28,17 @@ process.on('SIGTERM', async () => {
 });
 
 const app = express();
+
+//added 3/20 change if necessary
+app.get("/", (req, res) => {
+    res.send("Backend is working!");
+});
+
+app.get("/api/test", (req, res) => {
+    res.json({ message: "API is working!" });
+});
+
+
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
@@ -64,8 +78,20 @@ if (!fs.existsSync('uploads')) {
 // Serve uploaded files statically
 app.use('/uploads', express.static('uploads'));
 
+// CORS configuration
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://localhost:5175'
+];
+
+// Add production frontend URL if available
+if (process.env.CORS_ORIGIN) {
+    allowedOrigins.push(process.env.CORS_ORIGIN);
+}
+
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175'],
+    origin: allowedOrigins,
     credentials: true
 }));
 app.use(express.json());
@@ -314,18 +340,43 @@ app.get('/api/jobs/category/:type', async (req, res) => {
 });
 
 // Helper function to format salary
+// function formatSalary(salary) {
+//     if (!salary) return '';
+//     // Remove all non-numeric characters
+//     const numStr = salary.replace(/[^0-9.]/g, '');
+//     const amount = parseFloat(numStr);
+//     if (isNaN(amount)) return salary;
+//     // Format as currency
+//     return new Intl.NumberFormat('en-US', {
+//         style: 'currency',
+//         currency: 'USD',
+//         maximumFractionDigits: 0
+//     }).format(amount);
+// }
+
 function formatSalary(salary) {
     if (!salary) return '';
-    // Remove all non-numeric characters
-    const numStr = salary.replace(/[^0-9.]/g, '');
-    const amount = parseFloat(numStr);
-    if (isNaN(amount)) return salary;
-    // Format as currency
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        maximumFractionDigits: 0
-    }).format(amount);
+
+    // Check if it's a range
+    const parts = salary.split('-').map(part => part.trim());
+
+    const formatPart = (str) => {
+        const numStr = str.replace(/[^0-9.]/g, '');
+        const amount = parseFloat(numStr);
+        if (isNaN(amount)) return str;
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            maximumFractionDigits: 0
+        }).format(amount);
+    };
+
+    if (parts.length === 2) {
+        return `${formatPart(parts[0])} - ${formatPart(parts[1])}`;
+    }
+
+    // Single value
+    return formatPart(salary);
 }
 
 // Create job (requires authentication)
@@ -687,13 +738,16 @@ app.patch('/api/jobs/:id', authenticateToken, async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 
 const startServer = async () => {
     try {
         await prisma.$connect();
-        app.listen(PORT, () => {
-            console.log(`Server running on port ${PORT}`);
+        //app.listen(PORT, () => {
+            //console.log(`Server running on port ${PORT}`);
+        //});
+        app.listen(5050, "0.0.0.0", () => {
+            console.log("Server running on http://0.0.0.0:5050");
         });
     } catch (error) {
         console.error('Failed to start server:', error);
@@ -701,6 +755,8 @@ const startServer = async () => {
         process.exit(1);
     }
 };
+
+
 
 startServer().catch(async (error) => {
     console.error('Unhandled error:', error);

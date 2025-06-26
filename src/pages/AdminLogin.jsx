@@ -81,6 +81,23 @@ const AdminLogin = () => {
                             {isLoading ? 'Signing in...' : 'Sign in as Admin'}
                         </button>
                     </div>
+                    <div className="text-center">
+                        <button
+                            type="button"
+                            onClick={() => navigate('/job-board.html')}
+                            className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
+                        >
+                            Return to Job Board
+                        </button>
+                        <br />
+                        <button
+                            type="button"
+                            onClick={() => navigate('/login')}
+                            className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
+                        >
+                            Not an Admin? Login Here Instead
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
