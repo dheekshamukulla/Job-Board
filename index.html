@@ -15,9 +15,16 @@
     <script>
       (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="rnzgbj0l0dt5Hmj-pHkMB";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
+
+    
+    
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+     <!-- <button id="start-profile-chat">Start Profile Creation</button>
+     <script src="/script.js" defer></script>
+     <script src="https://www.chatbase.co/embed.min.js" id="rnzgbj0l0dt5Hmj-pHkMB" defer></script> -->
+
     <section class="showcase">
       <div class="video-container">
         <video src="citymovie.mp4" autoplay muted loop></video>
@@ -29,6 +36,8 @@
         <a href="job-board.html" class="btn">Explore Jobs</a>
         <br>
         <a href="#about" class="btn">Read More</a>
+        <br>
+        <a href="#testimonials" class="btn">Testimonials</a>
       </div>
     </section>
 
@@ -54,53 +63,112 @@
       </div>
     </div>
     </section>
-
-    <section class="testimonials">
-      <div class="grid">
-        <ul>
-          <li>
-            <div class="card">
-              <div class="stars">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <p>"I never knew where to start when looking for a job, but HireWire made everything so easy. I found a paid internship that actually matches what I want to study in college!"</p>
-              <h4>- Sai Bajantri, 12th Grade Student</h4>
-            </div>
-          </li>
-          <li>
-            <div class="card">
-              <div class="stars">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <p>"HireWire’s chatbot helped me fix my resume and recommended jobs I didn’t even know existed. I applied to three positions in one night—it felt like I finally had someone guiding me."</p>
-              <h4>- Marlee Brooks, 10th Grade Student</h4>
-            </div>
-          </li>
-          <li>
-            <div class="card">
-              <div class="stars">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <p>"As a school counselor, I’ve been searching for a tool like this. HireWire lets me assist student progress and share opportunities instantly. It’s made my job easier and more impactful."</p>
-              <h4>- Sophie Zhang, NC High School Counselor</h4>
-            </div>
-          </li>
-        </ul>
-        <a href="job-board.html" class="btn">Start Your Journey Now!</a>
-      </div>
-    </section>
+ <section class="testimonials" id="testimonials">
+          <div class="scroll-container">
+            <div class="scroll-left"></div>
+            <div class="scroll-right"></div>
+            <ul class="testimonial-list">
+              <li>
+                <div class="card">
+                  <div class="stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <p>"I never knew where to start when looking for a job, but HireWire made everything so easy. I found a paid internship that actually matches what I want to study in college!"</p>
+                  <h4>- Sai Bajantri, 12th Grade Student</h4>
+                </div>
+              </li>
+              <li>
+                <div class="card">
+                  <div class="stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <p>"HireWire’s chatbot helped me fix my resume and recommended jobs I didn’t even know existed. I applied to three positions in one night—it felt like I finally had someone guiding me."</p>
+                  <h4>- Marlee Brooks, 10th Grade Student</h4>
+                </div>
+              </li>
+              <li>
+                <div class="card">
+                  <div class="stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <p>"As a school counselor, I’ve been searching for a tool like this. HireWire lets me assist student progress and share opportunities instantly. It’s made my job easier and more impactful."</p>
+                  <h4>- Sophie Zhang, NC High School Counselor</h4>
+                </div>
+              </li>
+                            <li>
+                <div class="card">
+                  <div class="stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <p>"As a school counselor, I’ve been searching for a tool like this. HireWire lets me assist student progress and share opportunities instantly. It’s made my job easier and more impactful."</p>
+                  <h4>- Sophie Zhang, NC High School Counselor</h4>
+                </div>
+              </li>
+                            <li>
+                <div class="card">
+                  <div class="stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <p>"As a school counselor, I’ve been searching for a tool like this. HireWire lets me assist student progress and share opportunities instantly. It’s made my job easier and more impactful."</p>
+                  <h4>- Sophie Zhang, NC High School Counselor</h4>
+                </div>
+              </li>
+                            <li>
+                <div class="card">
+                  <div class="stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <p>"As a school counselor, I’ve been searching for a tool like this. HireWire lets me assist student progress and share opportunities instantly. It’s made my job easier and more impactful."</p>
+                  <h4>- Sophie Zhang, NC High School Counselor</h4>
+                </div>
+              </li>
+                            <li>
+                <div class="card">
+                  <div class="stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <p>"As a school counselor, I’ve been searching for a tool like this. HireWire lets me assist student progress and share opportunities instantly. It’s made my job easier and more impactful."</p>
+                  <h4>- Sophie Zhang, NC High School Counselor</h4>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <a href="job-board.html" class="btn">Start Your Journey Now!</a>
+        </section>
+    
+        <section class="profile-creation">
+          <h3>Create Your Profile</h3>
+          <button id="start-profile-chat">Start Profile Creation</button>
+        </section>
+    
 
     <section class="social-media">
       <div class="socials">
@@ -112,5 +180,7 @@
         <a href="x.com"><i class="fab fa-x-twitter fa-2x"></i></a>
       </div>
     </section>
+
+    
   </body>
 </html>

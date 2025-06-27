@@ -1,5 +1,5 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+```css
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
     * {
         box-sizing: border-box;
@@ -32,7 +32,7 @@
     }
 
     .about h1 {
-        color:rgb(12, 0, 58);
+        color: rgb(12, 0, 58);
     }
 
     .showcase {
@@ -277,45 +277,10 @@
         }
 
         .testimonial-list li {
-            width: 250px;
+            width: 250px; /* Smaller cards on mobile */
         }
 
         .about p {
             margin: auto 20px;
         }
-    
-        
-    }
-
-    /* Profile creation styles */
-    .profile-creation {
-      padding: 20px;
-      text-align: center;
-    }
-    .profile-creation h3 {
-      color: rgb(12, 0, 58);
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-    .profile-creation button {
-      display: inline-block;
-      color: white;
-      border: rgb(12, 0, 58) solid 1px;
-      padding: 10px 50px;
-      border-radius: 5px;
-      background-color: rgb(12, 0, 58);
-      cursor: pointer;
-    }
-    .profile-creation button:hover {
-      background-color: #3a4052;
-    }
-    .dark .profile-creation h3 {
-      color: #fff;
-    }
-    .dark .profile-creation button {
-      background-color: #333;
-      border-color: #555;
-    }
-    .dark .profile-creation button:hover {
-      background-color: #444;
     }
